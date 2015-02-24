@@ -8,4 +8,4 @@ VDream Property Library
 # Example
 
 # References
-  * [The Property Browser Framework](http://http://doc.qt.digia.com/qq/qq18-propertybrowser.html)
+  * [The Property Browser Framework](http://doc.qt.digia.com/qq/qq18-propertybrowser.html)
