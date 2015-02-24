@@ -10,7 +10,9 @@ CONFIG += staticlib
 DESTDIR = $${PWD}/lib
 
 SOURCES += \
-    src/property/vproperty.cpp
+    src/property/vproperty.cpp \
+    src/property/vpropertywidget.cpp
 
 HEADERS += \
-    src/property/vproperty.h
+    src/property/vproperty.h \
+    src/property/vpropertywidget.h
