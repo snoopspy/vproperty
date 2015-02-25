@@ -20,11 +20,16 @@ class VPropertyWidgetPrivate;
 class VPropertyWidget : public QWidget
 {
   Q_OBJECT
+  Q_PROPERTY(QObject* object READ object WRITE setObject)
 public:
   explicit VPropertyWidget(QWidget *parent = 0);
   virtual ~VPropertyWidget();
 
+  QObject* object() { return m_object; }
   void setObject(QObject* object);
+
+protected:
+  QObject* m_object;
 
 private:
   VPropertyWidgetPrivate* d_ptr;

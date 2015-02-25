@@ -29,10 +29,17 @@ VPropertyWidget::VPropertyWidget(QWidget* parent) : QWidget(parent)
 {
   QLayout* layout = new QGridLayout(this);
   layout->setMargin(0);
+  m_object = NULL;
   d_ptr = new VPropertyWidgetPrivate(this);
 }
 
 VPropertyWidget::~VPropertyWidget()
 {
   delete d_ptr;
+}
+
+void VPropertyWidget::setObject(QObject* object)
+{
+  qDebug();
+  if (m_object == object) return;
 }
