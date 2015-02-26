@@ -43,3 +43,4 @@ void VPropertyWidget::setObject(QObject* object)
   qDebug();
   if (m_object == object) return;
 }
+

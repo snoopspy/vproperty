@@ -1,5 +1,4 @@
 #include <QApplication>
-#include <QFile>
 #include <VPropertyWidget>
 
 int main(int argc, char *argv[])
@@ -12,3 +11,4 @@ int main(int argc, char *argv[])
   widget.show();
   return a.exec();
 }
+
