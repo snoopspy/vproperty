@@ -21,6 +21,7 @@ class VPropertyWidget : public QWidget
 {
   Q_OBJECT
   Q_PROPERTY(QObject* object READ object WRITE setObject)
+
 public:
   explicit VPropertyWidget(QWidget *parent = 0);
   virtual ~VPropertyWidget();

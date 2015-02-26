@@ -1,5 +1,6 @@
 #include <QDebug>
 #include <QGridLayout>
+#include <QMetaObject>
 #include <QtTreePropertyBrowser>
 #include "vpropertywidget.h"
 
@@ -42,5 +43,12 @@ void VPropertyWidget::setObject(QObject* object)
 {
   qDebug();
   if (m_object == object) return;
+  const QMetaObject* mobj = object->metaObject();
+  while (mobj != NULL)
+  {
+    const char* className = mobj->className();
+    qDebug() << className;
+    mobj = mobj->superClass();
+  }
 }
 
