@@ -1,3 +1,11 @@
+define makelib # $(1)filename, $(2)config
+	cd lib && \
+	qmake $(1) CONFIG+=$(2) && \
+	make && \
+	make clean && \
+	cd ..
+endef
+
 all:
 	make debug
 	make release
@@ -11,46 +19,22 @@ debug: libvproperty_d libvproperty_gui_d libvproperty_test_d
 release: libvproperty libvproperty_gui libvproperty_test
 
 libvproperty_d:
-	cd lib && \
-	qmake libvproperty.pro CONFIG+=debug && \
-	make && \
-	make clean && \
-	cd ..
+	$(call makelib,libvproperty.pro,debug)
 
 libvproperty_gui_d:
-	cd lib && \
-	qmake libvproperty_gui.pro CONFIG+=debug && \
-	make && \
-	make clean && \
-	cd ..
+	$(call makelib,libvproperty_gui.pro,debug)
 
 libvproperty_test_d:
-	cd lib && \
-	qmake libvproperty_test.pro CONFIG+=debug && \
-	make && \
-	make clean && \
-	cd ..
+	$(call makelib,libvproperty_test.pro,debug)
 
 libvproperty:
-	cd lib && \
-	qmake libvproperty.pro && \
-	make && \
-	make clean && \
-	cd ..
+	$(call makelib,libvproperty.pro,release)
 
 libvproperty_gui:
-	cd lib && \
-	qmake libvproperty_gui.pro && \
-	make && \
-	make clean && \
-	cd ..
+	$(call makelib,libvproperty_gui.pro,release)
 
 libvproperty_test:
-	cd lib && \
-	qmake libvproperty_test.pro && \
-	make && \
-	make clean && \
-	cd ..
+	$(call makelib,libvproperty_test.pro,release)
 
 app_:
 	cd app && qmake && make && make clean && cd ..
