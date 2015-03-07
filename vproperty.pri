@@ -1,3 +1,5 @@
+QT += core
+
 #------------------------------------------------------------------------------
 # debug and release
 #------------------------------------------------------------------------------
@@ -16,7 +18,7 @@ CONFIG(debug, debug|release) VPROPERTY_NAME = $${VPROPERTY_NAME}_d
 #------------------------------------------------------------------------------
 # vproperty
 #------------------------------------------------------------------------------
-VPROPERTY_PATH  = $${PWD}
+VPROPERTY_PATH = $${PWD}
 INCLUDEPATH += $${VPROPERTY_PATH}/src
 !CONFIG(VPROPERTY_BUILD) {
 	PRE_TARGETDEPS +=  $${VPROPERTY_PATH}/lib/lib$${VPROPERTY_NAME}.a

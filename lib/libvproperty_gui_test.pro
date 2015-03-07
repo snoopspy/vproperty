@@ -1,5 +1,6 @@
 QT += gui widgets
 
+include(../../../google/gtest/gtest.pri)
 CONFIG += VPROPERTY_BUILD
 include(../vproperty.pro)
 

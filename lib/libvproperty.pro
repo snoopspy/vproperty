@@ -1,4 +1,3 @@
-QT += core
 QT -= gui
 
 CONFIG += VPROPERTY_BUILD

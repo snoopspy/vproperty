@@ -14,9 +14,9 @@ all:
 update:
 	git pull
 
-debug: libvproperty_d libvproperty_gui_d libvproperty_test_d
+debug: libvproperty_d libvproperty_gui_d libvproperty_test_d libvproperty_gui_test_d
 
-release: libvproperty libvproperty_gui libvproperty_test
+release: libvproperty libvproperty_gui libvproperty_test libvproperty_gui_test
 
 libvproperty_d:
 	$(call makelib,libvproperty.pro,debug)
@@ -27,6 +27,9 @@ libvproperty_gui_d:
 libvproperty_test_d:
 	$(call makelib,libvproperty_test.pro,debug)
 
+libvproperty_gui_test_d:
+	$(call makelib,libvproperty_gui_test.pro,debug)
+
 libvproperty:
 	$(call makelib,libvproperty.pro,release)
 
@@ -35,6 +38,9 @@ libvproperty_gui:
 
 libvproperty_test:
 	$(call makelib,libvproperty_test.pro,release)
+
+libvproperty_gui_test:
+	$(call makelib,libvproperty_gui_test.pro,release)
 
 app_:
 	cd app && qmake && make && make clean && cd ..
