@@ -2,7 +2,9 @@
 #include <QGridLayout>
 #include <QMetaObject>
 #include <QMetaProperty>
+#include <QtProperty>
 #include <QtTreePropertyBrowser>
+#include <QtVariantEditorFactory>
 #include <QtVariantPropertyManager>
 #include "vpropertywidget.h"
 
@@ -17,7 +19,9 @@ class VPropertyWidgetPrivate
   {
     q_ptr = dynamic_cast<VPropertyWidget*>(parent);
     variantManager = new QtVariantPropertyManager(q_ptr);
+    variantFactory = new QtVariantEditorFactory(q_ptr);
     browser = new QtTreePropertyBrowser(q_ptr);
+    browser->setFactoryForManager(variantManager, variantFactory);
     Q_ASSERT(q_ptr->layout() != NULL);
     q_ptr->layout()->addWidget(browser);
   }
@@ -45,6 +49,11 @@ class VPropertyWidgetPrivate
       QtProperty *groupProperty = variantManager->addProperty(QtVariantPropertyManager::groupTypeId(), metaObject->className());
       browser->addProperty(groupProperty);
       //addProperty(gropuProperty, metaProperty);
+
+      QtVariantProperty* stringProperty = variantManager->addProperty(QVariant::String, metaProperty.name());
+      stringProperty->setValue(m_object->property(metaProperty.name()));
+      groupProperty->addSubProperty(stringProperty);
+
     }
   }
 
@@ -53,6 +62,7 @@ protected:
 
 protected:
   QtVariantPropertyManager* variantManager;
+  QtVariantEditorFactory *variantFactory;
   QtTreePropertyBrowser *browser;
 
 protected:
