@@ -26,13 +26,11 @@ public:
   explicit VPropertyWidget(QWidget *parent = 0);
   virtual ~VPropertyWidget();
 
-  QObject* object() { return m_object; }
+public:
+  QObject* object();
   void setObject(QObject* object);
 
 protected:
-  QObject* m_object;
-
-private:
   VPropertyWidgetPrivate* d_ptr;
 };
 
