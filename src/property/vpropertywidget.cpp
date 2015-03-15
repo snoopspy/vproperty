@@ -1,73 +1,7 @@
-#include <QDebug>
 #include <QGridLayout>
-#include <QMetaObject>
-#include <QMetaProperty>
-#include <QtProperty>
-#include <QtTreePropertyBrowser>
-#include <QtVariantEditorFactory>
-#include <QtVariantPropertyManager>
+
 #include "vpropertywidget.h"
-
-// ----------------------------------------------------------------------------
-// VPropertyWidgetPrivate
-// ----------------------------------------------------------------------------
-class VPropertyWidgetPrivate
-{
-  friend class VPropertyWidget;
-
-  VPropertyWidgetPrivate(QObject* parent)
-  {
-    q_ptr = dynamic_cast<VPropertyWidget*>(parent);
-    variantManager = new QtVariantPropertyManager(q_ptr);
-    variantFactory = new QtVariantEditorFactory(q_ptr);
-    browser = new QtTreePropertyBrowser(q_ptr);
-    browser->setFactoryForManager(variantManager, variantFactory);
-    Q_ASSERT(q_ptr->layout() != NULL);
-    q_ptr->layout()->addWidget(browser);
-  }
-
-  QObject* object() { return m_object; }
-  void setObject(QObject* object)
-  {
-    qDebug();
-    if (m_object == object) return;
-    m_object = object;
-    const QMetaObject* metaObject = object->metaObject();
-    addClassProperties(metaObject);
-  }
-
-  void addClassProperties(const QMetaObject *metaObject)
-  {
-    if (metaObject == NULL) return;
-    addClassProperties(metaObject->superClass());
-    qDebug() << "class " << metaObject->className();
-    int count = metaObject->propertyCount();
-    for (int i = 0; i < count; i++)
-    {
-      QMetaProperty metaProperty = metaObject->property(i);
-      qDebug() << "  " << metaProperty.typeName() << metaProperty.name();
-      QtProperty *groupProperty = variantManager->addProperty(QtVariantPropertyManager::groupTypeId(), metaObject->className());
-      browser->addProperty(groupProperty);
-      //addProperty(gropuProperty, metaProperty);
-
-      QtVariantProperty* stringProperty = variantManager->addProperty(QVariant::String, metaProperty.name());
-      stringProperty->setValue(m_object->property(metaProperty.name()));
-      groupProperty->addSubProperty(stringProperty);
-
-    }
-  }
-
-protected:
-  QObject* m_object;
-
-protected:
-  QtVariantPropertyManager* variantManager;
-  QtVariantEditorFactory *variantFactory;
-  QtTreePropertyBrowser *browser;
-
-protected:
-  VPropertyWidget* q_ptr;
-};
+#include "vpropertywidgetprivate.h"
 
 // ----------------------------------------------------------------------------
 // VPropertyWidget
@@ -93,4 +27,3 @@ void VPropertyWidget::setObject(QObject* object)
 {
   d_ptr->setObject(object);
 }
-

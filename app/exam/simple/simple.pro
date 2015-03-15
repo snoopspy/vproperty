@@ -1,7 +1,8 @@
 QT += core gui widgets
+
 TEMPATE = app
 DESTDIR = $${PWD}/../../../bin
 
-include(../../../vproperty.pro)
+include(../../../lib/libvproperty.pri)
 
 SOURCES += main.cpp

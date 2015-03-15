@@ -2,7 +2,7 @@ QT -= gui
 
 include(../../../google/gtest/gtest.pri)
 CONFIG += VPROPERTY_BUILD
-include(../vproperty.pro)
+include(libvproperty.pri)
 
 TARGET = $${VPROPERTY_NAME}
 TEMPLATE = lib

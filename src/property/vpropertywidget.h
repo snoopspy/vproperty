@@ -23,14 +23,14 @@ class VPropertyWidget : public QWidget
   Q_PROPERTY(QObject* object READ object WRITE setObject)
 
 public:
-  explicit VPropertyWidget(QWidget *parent = 0);
+  VPropertyWidget(QWidget *parent = 0);
   virtual ~VPropertyWidget();
 
 public:
   QObject* object();
   void setObject(QObject* object);
 
-protected:
+private:
   VPropertyWidgetPrivate* d_ptr;
 };
 
