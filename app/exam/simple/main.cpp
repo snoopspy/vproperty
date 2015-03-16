@@ -4,6 +4,7 @@
 
 #include <QFile>
 #include <QLabel>
+#include <VTcpClient>
 
 int main(int argc, char *argv[])
 {
@@ -24,10 +25,17 @@ int main(int argc, char *argv[])
   widget.setObject(&tcpServer);
   */
 
+  /*
   QLabel label;
   label.setObjectName("myLabel");
   widget.setObject(&label);
   label.show();
+  */
+
+  VTcpClient tcpClient;
+  tcpClient.setObjectName("myTcpClient");
+  widget.setObject(&tcpClient);
+  //tcpClient.show();
 
   widget.show();
   int res = a.exec();
