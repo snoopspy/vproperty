@@ -68,7 +68,12 @@ void VPropertyWidgetPrivate::addClassProperties(const QMetaObject *metaObject)
 
     //addProperty(gropuProperty, metaProperty);
 
-    QtVariantProperty* stringProperty = variantManager->addProperty(QVariant::String, metaProperty.name());
+    QtVariantProperty* stringProperty = variantManager->addProperty(metaProperty.userType(), metaProperty.name());
+    if (stringProperty == NULL)
+    {
+      qDebug() << "can not create property for" << metaProperty.name();
+      continue;
+    }
     stringProperty->setValue(m_object->property(metaProperty.name()));
 
     properties[metaProperty] = stringProperty;
