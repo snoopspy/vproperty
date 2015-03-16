@@ -57,7 +57,6 @@ void VPropertyWidgetPrivate::addClassProperties(const QMetaObject *metaObject)
 
   qDebug() << "class " << metaObject->className();
   QtProperty *groupProperty = variantManager->addProperty(QtVariantPropertyManager::groupTypeId(), metaObject->className());
-  browser->addProperty(groupProperty);
 
   int count = metaObject->propertyCount();
   for (int i = 0; i < count; i++)
@@ -79,6 +78,10 @@ void VPropertyWidgetPrivate::addClassProperties(const QMetaObject *metaObject)
     properties[metaProperty] = property;
     groupProperty->addSubProperty(property);
   }
+  if (groupProperty->subProperties().count() > 0)
+    browser->addProperty(groupProperty);
+  else
+    delete groupProperty;
 }
 
 void VPropertyWidgetPrivate::valueChanged(QtProperty* property, const QVariant & value)
