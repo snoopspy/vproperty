@@ -1,10 +1,19 @@
 #include <QDebug> // gilgil temp 2015.03.16
 #include <QLayout>
-#include <QMetaProperty>
 #include <QWidget>
 
 #include "vpropertywidget.h"
 #include "vpropertywidgetprivate.h"
+
+uint qHash(const QMetaProperty metaProperty)
+{
+  return qHash(metaProperty.name());
+}
+
+bool operator==(const QMetaProperty metaProperty1, const QMetaProperty metaProperty2)
+{
+  return strcmp(metaProperty1.name(), metaProperty2.name()) == 0;
+}
 
 // ----------------------------------------------------------------------------
 // VPropertyWidgetPrivate
@@ -36,6 +45,7 @@ void VPropertyWidgetPrivate::setObject(QObject* object)
   qDebug();
   if (m_object == object) return;
   m_object = object;
+  properties.clear();
   const QMetaObject* metaObject = object->metaObject();
   addClassProperties(metaObject);
 }
@@ -49,6 +59,7 @@ void VPropertyWidgetPrivate::addClassProperties(const QMetaObject *metaObject)
   for (int i = 0; i < count; i++)
   {
     QMetaProperty metaProperty = metaObject->property(i);
+    if (properties.find(metaProperty) != properties.end()) continue;
     qDebug() << "  " << metaProperty.typeName() << metaProperty.name();
     QtProperty *groupProperty = variantManager->addProperty(QtVariantPropertyManager::groupTypeId(), metaObject->className());
     browser->addProperty(groupProperty);
@@ -56,6 +67,8 @@ void VPropertyWidgetPrivate::addClassProperties(const QMetaObject *metaObject)
 
     QtVariantProperty* stringProperty = variantManager->addProperty(QVariant::String, metaProperty.name());
     stringProperty->setValue(m_object->property(metaProperty.name()));
+
+    properties[metaProperty] = stringProperty;
     groupProperty->addSubProperty(stringProperty);
   }
 }
