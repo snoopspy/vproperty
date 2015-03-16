@@ -54,15 +54,18 @@ void VPropertyWidgetPrivate::addClassProperties(const QMetaObject *metaObject)
 {
   if (metaObject == NULL) return;
   addClassProperties(metaObject->superClass());
+
   qDebug() << "class " << metaObject->className();
+  QtProperty *groupProperty = variantManager->addProperty(QtVariantPropertyManager::groupTypeId(), metaObject->className());
+  browser->addProperty(groupProperty);
+
   int count = metaObject->propertyCount();
   for (int i = 0; i < count; i++)
   {
     QMetaProperty metaProperty = metaObject->property(i);
     if (properties.find(metaProperty) != properties.end()) continue;
     qDebug() << "  " << metaProperty.typeName() << metaProperty.name();
-    QtProperty *groupProperty = variantManager->addProperty(QtVariantPropertyManager::groupTypeId(), metaObject->className());
-    browser->addProperty(groupProperty);
+
     //addProperty(gropuProperty, metaProperty);
 
     QtVariantProperty* stringProperty = variantManager->addProperty(QVariant::String, metaProperty.name());
