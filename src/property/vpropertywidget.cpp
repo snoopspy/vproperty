@@ -1,29 +1,29 @@
 #include <QGridLayout>
 
 #include "vpropertywidget.h"
-#include "vpropertywidgetprivate.h"
 
 // ----------------------------------------------------------------------------
 // VPropertyWidget
 // ----------------------------------------------------------------------------
-VPropertyWidget::VPropertyWidget(QWidget* parent) : QWidget(parent)
+VPropertyWidget::VPropertyWidget(QWidget *parent) : QTreeWidget(parent)
 {
   QLayout* layout = new QGridLayout(this);
   layout->setMargin(0);
-  d_ptr = new VPropertyWidgetPrivate(this);
 }
 
 VPropertyWidget::~VPropertyWidget()
 {
-  delete d_ptr;
+
 }
 
 QObject* VPropertyWidget::object()
 {
-  return d_ptr->object();
+  return _object;
 }
 
 void VPropertyWidget::setObject(QObject* object)
 {
-  d_ptr->setObject(object);
+  if (object == _object) return;
+  _object = object;
+  // gilgil temp 2015.03.17
 }

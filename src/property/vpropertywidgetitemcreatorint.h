@@ -8,29 +8,17 @@
 //
 // ----------------------------------------------------------------------------
 
-#ifndef __V_PROPERTY_WIDGET_H__
-#define __V_PROPERTY_WIDGET_H__
+#ifndef __V_PROPERTY_WIDGET_ITEM_CREATOR_INT_H__
+#define __V_PROPERTY_WIDGET_ITEM_CREATOR_INT_H__
 
-#include <QTreeWidget>
+#include "vpropertywidgetitemcreator.h"
 
 // ----------------------------------------------------------------------------
-// VPropertyWidget
+// VPropertyWidgetItemCreatorInt
 // ----------------------------------------------------------------------------
-class VPropertyWidget : public QTreeWidget
+class VPropertyWidgetItemCreatorInt : public VPropertyWidgetItemCreator
 {
-  Q_OBJECT
-  Q_PROPERTY(QObject* object READ object WRITE setObject)
-
-public:
-  explicit VPropertyWidget(QWidget *parent = 0);
-  virtual ~VPropertyWidget();
-
-public:
-  QObject* object();
-  void setObject(QObject* object);
-
-protected:
-  QObject* _object;
+  virtual VPropertyWidgetItem* createPropertyWidgetItem(QMetaProperty mpro);
 };
 
-#endif // __V_PROPERTY_WIDGET_H__
+#endif // __V_PROPERTY_WIDGET_ITEM_CREATOR_INT_H__

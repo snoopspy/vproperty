@@ -1,7 +1,7 @@
 QT += core gui widgets
 
 include(../../../../../google/gtest/gtest.pri)
-include(../../../lib/libvproperty.pri)
+include(../../../vproperty.pri)
 
 #QMAKE_CXXFLAGS += -std=c++11
 
