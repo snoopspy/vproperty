@@ -1,7 +1,9 @@
 QT += core gui widgets
 
+include(../../../../../google/gtest/gtest.pri)
 include(../../../lib/libvproperty.pri)
-include(../../../../vdream/vdream.pri)
+
+#QMAKE_CXXFLAGS += -std=c++11
 
 TARGET = vproperty_test
 TEMPLATE = app
