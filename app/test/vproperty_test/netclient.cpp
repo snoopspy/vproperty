@@ -2,7 +2,10 @@
 
 NetClient::NetClient(QObject* parent) : QObject(parent)
 {
-  ip = 0;
+  Ip myIp("");
+  ip = "";
+  QString s = ip;
+  //s = ip;
 }
 
 NetClient::~NetClient()

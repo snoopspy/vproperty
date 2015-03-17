@@ -7,7 +7,7 @@
 class NetClient : public QObject
 {
   Q_OBJECT
-  Q_PROPERTY(Ip ip MEMBER ip)
+  Q_PROPERTY(QString ip MEMBER ip)
 
 public:
   NetClient(QObject* parent = 0);

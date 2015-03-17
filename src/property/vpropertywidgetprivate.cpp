@@ -67,10 +67,12 @@ void VPropertyWidgetPrivate::addClassProperties(const QMetaObject *metaObject)
 
     //addProperty(gropuProperty, metaProperty);
 
-    QtVariantProperty* property = variantManager->addProperty(metaProperty.userType(), metaProperty.name());
+    int userType = metaProperty.userType();
+    const char* name = metaProperty.name();
+    QtVariantProperty* property = variantManager->addProperty(userType, name);
     if (property == NULL)
     {
-      qDebug() << "can not create property for" << metaProperty.name();
+      qDebug() << "can not create property for" << metaProperty.name() << "userType=" << userType << "name=" << name;
       continue;
     }
     property->setValue(m_object->property(metaProperty.name()));
