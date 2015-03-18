@@ -15,12 +15,13 @@
 #include "vpropertywidgetcreator.h"
 
 // ----------------------------------------------------------------------------
-// VPropertyWidgetCreatorMgr
+// VPropertyWidgetFactory
 // ----------------------------------------------------------------------------
-class VPropertyWidgetCreatorMgr : public QList<VPropertyWidgetCreator*>
+class VPropertyWidgetFactory : public QList<VPropertyWidgetCreator*>
 {
 public:
-  static VPropertyWidgetCreatorMgr& instance();
+  VPropertyWidget* createWidget(VPropertyEditor* editor, QObject* object, QMetaProperty mpro);
+  static VPropertyWidgetFactory& instance();
 };
 
 #endif // __V_PROPERTY_WIDGET_ITEM_CREATOR_MGR_H__

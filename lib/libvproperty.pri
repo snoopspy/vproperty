@@ -9,7 +9,7 @@ HEADERS += \
 	$$PWD/../src/property/vpropertywidget.h \
 	$$PWD/../src/property/vpropertywidgetcreator.h \
     $$PWD/../src/property/vpropertywidgetcreatorlineedit.h \
-	$$PWD/../src/property/vpropertywidgetcreatormgr.h
+    $$PWD/../src/property/vpropertywidgetfactory.h
 
 SOURCES += \
     $$PWD/../src/property/vproperty.cpp \
@@ -17,5 +17,5 @@ SOURCES += \
 	$$PWD/../src/property/vpropertywidget.cpp \
 	$$PWD/../src/property/vpropertywidgetcreatorlineedit.cpp \
     $$PWD/../src/property/vpropertywidgetcreator.cpp \
-	$$PWD/../src/property/vpropertywidgetcreatormgr.cpp
+    $$PWD/../src/property/vpropertywidgetfactory.cpp
 

@@ -2,7 +2,7 @@
 #include <QGridLayout>
 
 #include "vpropertyeditor.h"
-#include "vpropertywidgetcreatormgr.h"
+#include "vpropertywidgetfactory.h"
 
 // ----------------------------------------------------------------------------
 // VPropertyEditor
@@ -30,7 +30,7 @@ void VPropertyEditor::setObject(QObject* object)
 {
   if (object == _object) return;
   _object = object;
-  VPropertyWidgetCreatorMgr& mgr = VPropertyWidgetCreatorMgr::instance();
+  VPropertyWidgetFactory& factory = VPropertyWidgetFactory::instance();
 
   const QMetaObject* mobj = object->metaObject();
   int propCount = mobj->propertyCount();
@@ -45,12 +45,7 @@ void VPropertyEditor::setObject(QObject* object)
     }
     if (widget == nullptr)
     {
-      for (QList<VPropertyWidgetCreator*>::iterator it = mgr.begin(); it != mgr.end(); it++)
-      {
-        VPropertyWidgetCreator* creator = *it;
-        widget = creator->createWidget(this, object, mpro);
-        if (widget != nullptr) break;
-      }
+      widget = factory.createWidget(this, object, mpro);
     }
     if (widget == nullptr)
     {
