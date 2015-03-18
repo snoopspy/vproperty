@@ -1,5 +1,5 @@
 #include <QApplication>
-#include <VPropertyWidget>
+#include <VPropertyEditor>
 #include "netclient.h"
 
 int main(int argc, char *argv[])
@@ -7,10 +7,9 @@ int main(int argc, char *argv[])
   QApplication a(argc, argv);
   NetClient netClient;
   netClient.setObjectName("myNetClient");
-  VPropertyWidget widget;
-  widget.setObject(&netClient);
-  widget.show();
-  widget.show();
+  VPropertyEditor editor;
+  editor.setObject(&netClient);
+  editor.show();
   int res = a.exec();
   return res;
 }

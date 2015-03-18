@@ -8,19 +8,29 @@
 //
 // ----------------------------------------------------------------------------
 
-#ifndef __V_PROPERTY_WIDGET_ITEM_CREATOR_MGR_H__
-#define __V_PROPERTY_WIDGET_ITEM_CREATOR_MGR_H__
+#ifndef __V_PROPERTY_EDITOR_H__
+#define __V_PROPERTY_EDITOR_H__
 
-#include <QList>
-#include "vpropertywidgetitemcreator.h"
+#include <QTreeWidget>
 
 // ----------------------------------------------------------------------------
-// VPropertyWidgetItemCreatorMgr
+// VPropertyEditor
 // ----------------------------------------------------------------------------
-class VPropertyWidgetItemCreatorMgr : public QList<VPropertyWidgetItemCreator*>
+class VPropertyEditor : public QTreeWidget
 {
+  Q_OBJECT
+  Q_PROPERTY(QObject* object READ object WRITE setObject)
+
 public:
-  static VPropertyWidgetItemCreatorMgr& instance();
+  explicit VPropertyEditor(QWidget *parent = 0);
+  virtual ~VPropertyEditor();
+
+public:
+  QObject* object();
+  void setObject(QObject* object);
+
+protected:
+  QObject* _object;
 };
 
-#endif // __V_PROPERTY_WIDGET_ITEM_CREATOR_MGR_H__
+#endif // __V_PROPERTY_EDITOR_H__

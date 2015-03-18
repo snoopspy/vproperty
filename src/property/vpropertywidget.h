@@ -11,26 +11,8 @@
 #ifndef __V_PROPERTY_WIDGET_H__
 #define __V_PROPERTY_WIDGET_H__
 
-#include <QTreeWidget>
+#include <QWidget>
 
-// ----------------------------------------------------------------------------
-// VPropertyWidget
-// ----------------------------------------------------------------------------
-class VPropertyWidget : public QTreeWidget
-{
-  Q_OBJECT
-  Q_PROPERTY(QObject* object READ object WRITE setObject)
-
-public:
-  explicit VPropertyWidget(QWidget *parent = 0);
-  virtual ~VPropertyWidget();
-
-public:
-  QObject* object();
-  void setObject(QObject* object);
-
-protected:
-  QObject* _object;
-};
+typedef QWidget VPropertyWidget;
 
 #endif // __V_PROPERTY_WIDGET_H__

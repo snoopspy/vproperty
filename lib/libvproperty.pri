@@ -5,17 +5,17 @@ include(../vproperty.pri)
 
 HEADERS += \
     $$PWD/../src/property/vproperty.h \
-    $$PWD/../src/property/vpropertywidget.h \
-    $$PWD/../src/property/vpropertywidgetitem.h \
-    $$PWD/../src/property/vpropertywidgetitemcreator.h \
-    $$PWD/../src/property/vpropertywidgetitemcreatorlineedit.h \
-    $$PWD/../src/property/vpropertywidgetitemcreatormgr.h
+    $$PWD/../src/property/vpropertyeditor.h \
+	$$PWD/../src/property/vpropertywidget.h \
+	$$PWD/../src/property/vpropertywidgetcreator.h \
+    $$PWD/../src/property/vpropertywidgetcreatorlineedit.h \
+	$$PWD/../src/property/vpropertywidgetcreatormgr.h
 
 SOURCES += \
     $$PWD/../src/property/vproperty.cpp \
-    $$PWD/../src/property/vpropertywidget.cpp \
-    $$PWD/../src/property/vpropertywidgetitem.cpp \
-    $$PWD/../src/property/vpropertywidgetitemcreator.cpp \
-    $$PWD/../src/property/vpropertywidgetitemcreatormgr.cpp \
-    $$PWD/../src/property/vpropertywidgetitemcreatorlineedit.cpp
+    $$PWD/../src/property/vpropertyeditor.cpp \
+	$$PWD/../src/property/vpropertywidget.cpp \
+	$$PWD/../src/property/vpropertywidgetcreatorlineedit.cpp \
+    $$PWD/../src/property/vpropertywidgetcreator.cpp \
+	$$PWD/../src/property/vpropertywidgetcreatormgr.cpp
 

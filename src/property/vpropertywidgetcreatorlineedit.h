@@ -13,53 +13,58 @@
 
 #include <QDebug>
 #include <QLineEdit>
-#include "vpropertywidgetitemcreator.h"
+#include "vpropertywidgetcreator.h"
 
 // ----------------------------------------------------------------------------
-// VPropertyWidgetItemCreator_LineEdit
+// VPropertyWidgetLineEdit
 // ----------------------------------------------------------------------------
-class VPropertyWidgetItemCreator_LineEdit : public QLineEdit
+class VPropertyWidgetLineEdit : public QLineEdit
 {
   Q_OBJECT
 
-protected:
-  QObject* object;
-  QMetaProperty mpro;
-
 public:
-  VPropertyWidgetItemCreator_LineEdit(QWidget* parent, QObject* object, QMetaProperty mpro) : QLineEdit(parent)
+  VPropertyWidgetLineEdit(QWidget* parent, QObject* object, QMetaProperty mpro) : QLineEdit(parent)
   {
     this->object = object;
     this->mpro = mpro;
+
     connect(this, SIGNAL(editingFinished()), this, SLOT(myEditingFinished()));
   }
+
 public slots:
   void myEditingFinished()
   {
     object->setProperty(mpro.name(), QVariant::fromValue<QString>(this->text()));
-    qDebug() << "VPropertyWidgetItemCreator_LineEdit::myEditingFinished" << mpro.name() <<  (void*)this; // gilgil temp 2015.03.17
-  }
-};
-
-// ----------------------------------------------------------------------------
-// VPropertyWidgetItemCreatorLineEdit
-// ----------------------------------------------------------------------------
-template <int userType>
-class VPropertyWidgetItemCreatorLineEdit : public VPropertyWidgetItemCreator
-{
-public:
-  VPropertyWidgetItem* createPropertyWidgetItem(VPropertyWidget* widget,  QObject* object, QMetaProperty mpro) override
-  {
-    if (mpro.userType() != userType) return nullptr;
-    VPropertyWidgetItem* item = new VPropertyWidgetItem;
-    item->setText(0, mpro.name());
-    VPropertyWidgetItemCreator_LineEdit * lineEdit = new VPropertyWidgetItemCreator_LineEdit(widget, object, mpro);
-    widget->setItemWidget(item, 1, lineEdit);
-    return item;
+    qDebug() << "VPropertyWidgetCreator_LineEdit::myEditingFinished" << mpro.name() <<  (void*)this; // gilgil temp 2015.03.17
   }
 
 protected:
-  QLineEdit* lineEdit;
+  QObject* object;
+  QMetaProperty mpro;
+};
+
+// ----------------------------------------------------------------------------
+// VPropertyWidgetCreatorLineEdit
+// ----------------------------------------------------------------------------
+class VPropertyWidgetCreatorLineEdit : public QObject, public VPropertyWidgetCreator
+{
+  Q_OBJECT
+
+public:
+  VPropertyWidgetCreatorLineEdit(int userType)
+  {
+    this->userType = userType;
+  }
+
+  VPropertyWidget* createPropertyWidgetItem(VPropertyEditor* editor,  QObject* object, QMetaProperty mpro) override
+  {
+    if (mpro.userType() != userType) return nullptr;
+    VPropertyWidgetLineEdit* lineEdit = new VPropertyWidgetLineEdit(editor, object, mpro);
+    return lineEdit;
+  }
+
+protected:
+  int userType;
 };
 
 #endif // __V_PROPERTY_WIDGET_ITEM_CREATOR_INT_H__

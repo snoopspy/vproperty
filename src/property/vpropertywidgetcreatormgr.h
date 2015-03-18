@@ -8,16 +8,19 @@
 //
 // ----------------------------------------------------------------------------
 
-#ifndef __V_PROPERTY_WIDGET_ITEM_H__
-#define __V_PROPERTY_WIDGET_ITEM_H__
+#ifndef __V_PROPERTY_WIDGET_ITEM_CREATOR_MGR_H__
+#define __V_PROPERTY_WIDGET_ITEM_CREATOR_MGR_H__
 
-#include <QTreeWidgetItem>
+#include <QList>
+#include "vpropertywidgetcreator.h"
 
 // ----------------------------------------------------------------------------
-// VPropertyWidgetItem
+// VPropertyWidgetCreatorMgr
 // ----------------------------------------------------------------------------
-class VPropertyWidgetItem : public QTreeWidgetItem
+class VPropertyWidgetCreatorMgr : public QList<VPropertyWidgetCreator*>
 {
+public:
+  static VPropertyWidgetCreatorMgr& instance();
 };
 
-#endif // __V_PROPERTY_WIDGET_ITEM_H__
+#endif // __V_PROPERTY_WIDGET_ITEM_CREATOR_MGR_H__

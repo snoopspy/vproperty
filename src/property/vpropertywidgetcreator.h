@@ -12,16 +12,16 @@
 #define __V_PROPERTY_WIDGET_ITEM_CREATOR_H__
 
 #include <QMetaProperty>
+#include "vpropertyeditor.h"
 #include "vpropertywidget.h"
-#include "vpropertywidgetitem.h"
 
 // ----------------------------------------------------------------------------
-// VPropertyWidgetItemCreator
+// VPropertyWidgetCreator
 // ----------------------------------------------------------------------------
-class VPropertyWidgetItemCreator
+class VPropertyWidgetCreator
 {
 public:
-  virtual VPropertyWidgetItem* createPropertyWidgetItem(VPropertyWidget* widget, QObject* object, QMetaProperty mpro) = 0;
+  virtual VPropertyWidget* createPropertyWidgetItem(VPropertyEditor* editor, QObject* object, QMetaProperty mpro) = 0;
 };
 
 #endif // __V_PROPERTY_WIDGET_ITEM_CREATOR_H__
