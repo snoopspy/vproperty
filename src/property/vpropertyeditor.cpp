@@ -50,7 +50,6 @@ void VPropertyEditor::setObject(QObject* object)
     if (widget == nullptr)
     {
       qDebug() << "item is nullptr" << mpro.name();
-      return;
     }
     QTreeWidgetItem* widgetItem = new QTreeWidgetItem(this);
     widgetItem->setText(0, mpro.name());

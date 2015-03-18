@@ -1,4 +1,4 @@
-QT -= gui
+QT += gui widgets
 
 CONFIG += VPROPERTY_BUILD
 include(libvproperty.pri)

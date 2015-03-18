@@ -11,7 +11,6 @@ CONFIG(release, debug|release) DEFINES += _RELEASE NDEBUG
 #------------------------------------------------------------------------------
 VPROPERTY_NAME = vproperty
 android-g++:                 VPROPERTY_NAME = $${VPROPERTY_NAME}_android
-contains(QT, gui)            VPROPERTY_NAME = $${VPROPERTY_NAME}_gui
 CONFIG(GTEST)                VPROPERTY_NAME = $${VPROPERTY_NAME}_test
 CONFIG(debug, debug|release) VPROPERTY_NAME = $${VPROPERTY_NAME}_d
 

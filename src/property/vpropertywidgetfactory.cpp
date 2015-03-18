@@ -13,7 +13,7 @@ public:
     this->append(intCreator);
 
     VPropertyWidgetCreatorLineEdit* stringCreator = new VPropertyWidgetCreatorLineEdit(QMetaType::QString);
-    append(stringCreator);
+    this->append(stringCreator);
   }
   virtual ~VPropertyWidgetFactoryInstance()
   {

@@ -1,15 +1,27 @@
 #include <QApplication>
 #include <VPropertyEditor>
+
+#include <QLineEdit>
 #include "netclient.h"
+
+QObject* createObject()
+{
+  //QObject* res = new NetClient;
+
+  QObject* res = new QLineEdit;
+
+  res->setObjectName("myName");
+  return res;
+}
 
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
-  NetClient netClient;
-  netClient.setObjectName("myNetClient");
+  QObject* object = createObject();
   VPropertyEditor editor;
-  editor.setObject(&netClient);
+  editor.setObject(object);
   editor.show();
   int res = a.exec();
+  delete object;
   return res;
 }
