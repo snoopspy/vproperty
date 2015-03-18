@@ -17,7 +17,7 @@
 // ----------------------------------------------------------------------------
 // VPropertyWidgetItemCreatorMgr
 // ----------------------------------------------------------------------------
-class VPropertyWidgetItemCreatorMgr : QList<VPropertyWidgetItemCreator*>
+class VPropertyWidgetItemCreatorMgr : public QList<VPropertyWidgetItemCreator*>
 {
 public:
   static VPropertyWidgetItemCreatorMgr& instance();

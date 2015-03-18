@@ -12,6 +12,7 @@
 #define __V_PROPERTY_WIDGET_ITEM_CREATOR_H__
 
 #include <QMetaProperty>
+#include "vpropertywidget.h"
 #include "vpropertywidgetitem.h"
 
 // ----------------------------------------------------------------------------
@@ -19,7 +20,8 @@
 // ----------------------------------------------------------------------------
 class VPropertyWidgetItemCreator
 {
-  virtual VPropertyWidgetItem* createPropertyWidgetItem(QMetaProperty mpro) = 0;
+public:
+  virtual VPropertyWidgetItem* createPropertyWidgetItem(VPropertyWidget* widget, QObject* object, QMetaProperty mpro) = 0;
 };
 
 #endif // __V_PROPERTY_WIDGET_ITEM_CREATOR_H__

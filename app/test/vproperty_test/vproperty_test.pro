@@ -1,13 +1,13 @@
 QT += core gui widgets
 
 include(../../../../../google/gtest/gtest.pri)
-include(../../../vproperty.pri)
+include(../../../lib/libvproperty.pri)
 
 #QMAKE_CXXFLAGS += -std=c++11
 
 TARGET = vproperty_test
 TEMPLATE = app
-DESTDIR = $${PWD}/../../../bin
+DESTDIR = $$PWD/../../../bin
 
 SOURCES += main.cpp \
     ip.cpp \
