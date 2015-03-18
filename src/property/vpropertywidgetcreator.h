@@ -21,7 +21,7 @@
 class VPropertyWidgetCreator
 {
 public:
-  virtual VPropertyWidget* createPropertyWidgetItem(VPropertyEditor* editor, QObject* object, QMetaProperty mpro) = 0;
+  virtual VPropertyWidget* createWidget(VPropertyEditor* editor, QObject* object, QMetaProperty mpro) = 0;
 };
 
 #endif // __V_PROPERTY_WIDGET_ITEM_CREATOR_H__

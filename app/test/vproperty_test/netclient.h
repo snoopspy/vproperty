@@ -7,6 +7,7 @@
 class NetClient : public QObject
 {
   Q_OBJECT
+  Q_PROPERTY(QString host MEMBER host)
   Q_PROPERTY(QString ip MEMBER ip)
 
 public:
@@ -14,6 +15,7 @@ public:
   virtual ~NetClient();
 
 public:
+  QString host;
   Ip ip;
 };
 

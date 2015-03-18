@@ -41,14 +41,14 @@ void VPropertyEditor::setObject(QObject* object)
     VPropertyWidgetCreator* creatableObject = dynamic_cast<VPropertyWidgetCreator*>(object);
     if (creatableObject != nullptr)
     {
-      widget = creatableObject->createPropertyWidgetItem(this, object, mpro);
+      widget = creatableObject->createWidget(this, object, mpro);
     }
     if (widget == nullptr)
     {
       for (QList<VPropertyWidgetCreator*>::iterator it = mgr.begin(); it != mgr.end(); it++)
       {
         VPropertyWidgetCreator* creator = *it;
-        widget = creator->createPropertyWidgetItem(this, object, mpro);
+        widget = creator->createWidget(this, object, mpro);
         if (widget != nullptr) break;
       }
     }

@@ -56,7 +56,7 @@ public:
     this->userType = userType;
   }
 
-  VPropertyWidget* createPropertyWidgetItem(VPropertyEditor* editor,  QObject* object, QMetaProperty mpro) override
+  VPropertyWidget* createWidget(VPropertyEditor* editor,  QObject* object, QMetaProperty mpro) override
   {
     if (mpro.userType() != userType) return nullptr;
     VPropertyWidgetLineEdit* lineEdit = new VPropertyWidgetLineEdit(editor, object, mpro);
