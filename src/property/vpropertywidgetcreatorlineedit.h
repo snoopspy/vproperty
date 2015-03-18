@@ -46,10 +46,8 @@ protected:
 // ----------------------------------------------------------------------------
 // VPropertyWidgetCreatorLineEdit
 // ----------------------------------------------------------------------------
-class VPropertyWidgetCreatorLineEdit : public QObject, public VPropertyWidgetCreator
+class VPropertyWidgetCreatorLineEdit : public VPropertyWidgetCreator
 {
-  Q_OBJECT
-
 public:
   VPropertyWidgetCreatorLineEdit(int userType)
   {
