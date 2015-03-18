@@ -60,6 +60,9 @@ public:
   {
     if (mpro.userType() != userType) return nullptr;
     VPropertyWidgetLineEdit* lineEdit = new VPropertyWidgetLineEdit(editor, object, mpro);
+    lineEdit->setFrame(false);
+    QVariant value = object->property(mpro.name());
+    lineEdit->setText(value.toString());
     return lineEdit;
   }
 
