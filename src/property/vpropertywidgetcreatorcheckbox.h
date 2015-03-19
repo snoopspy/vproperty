@@ -8,34 +8,33 @@
 //
 // ----------------------------------------------------------------------------
 
-#ifndef __V_PROPERTY_WIDGET_ITEM_CREATOR_LINE_EDIT_H__
-#define __V_PROPERTY_WIDGET_ITEM_CREATOR_LINE_EDIT_H__
+#ifndef __V_PROPERTY_WIDGET_ITEM_CREATOR_CHECK_BOX_H__
+#define __V_PROPERTY_WIDGET_ITEM_CREATOR_CHECK_BOX_H__
 
 #include <QDebug>
-#include <QLineEdit>
+#include <QCheckBox>
 #include "vpropertywidgetcreator.h"
 
 // ----------------------------------------------------------------------------
-// VPropertyWidgetLineEdit
+// VPropertyWidgetCheckBox
 // ----------------------------------------------------------------------------
-class VPropertyWidgetLineEdit : public QLineEdit
+class VPropertyWidgetCheckBox : public QCheckBox
 {
   Q_OBJECT
 
 public:
-  VPropertyWidgetLineEdit(QWidget* parent, QObject* object, QMetaProperty mpro) : QLineEdit(parent)
+  VPropertyWidgetCheckBox(QWidget* parent, QObject* object, QMetaProperty mpro) : QCheckBox(parent)
   {
     this->object = object;
     this->mpro = mpro;
 
-    connect(this, SIGNAL(editingFinished()), this, SLOT(myEditingFinished()));
+    connect(this, SIGNAL(clicked(bool)), this, SLOT(myClicked(bool)));
   }
 
 public slots:
-  void myEditingFinished()
+  void myClicked(bool checked)
   {
-    object->setProperty(mpro.name(), QVariant::fromValue<QString>(this->text()));
-    qDebug() << "VPropertyWidgetCreator_LineEdit::myEditingFinished" << mpro.name() <<  (void*)this; // gilgil temp 2015.03.17
+    object->setProperty(mpro.name(), checked);
   }
 
 protected:
@@ -44,12 +43,12 @@ protected:
 };
 
 // ----------------------------------------------------------------------------
-// VPropertyWidgetCreatorLineEdit
+// VPropertyWidgetCreatorCheckBox
 // ----------------------------------------------------------------------------
-class VPropertyWidgetCreatorLineEdit : public VPropertyWidgetCreator
+class VPropertyWidgetCreatorCheckBox : public VPropertyWidgetCreator
 {
 public:
-  VPropertyWidgetCreatorLineEdit(int userType)
+  VPropertyWidgetCreatorCheckBox(int userType)
   {
     this->userType = userType;
   }
@@ -57,15 +56,15 @@ public:
   VPropertyWidget* createWidget(VPropertyEditor* editor, QObject* object, QMetaProperty mpro) override
   {
     if (mpro.userType() != userType) return nullptr;
-    VPropertyWidgetLineEdit* lineEdit = new VPropertyWidgetLineEdit(editor, object, mpro);
-    lineEdit->setFrame(false);
+    VPropertyWidgetCheckBox* checkBox = new VPropertyWidgetCheckBox(editor, object, mpro);
+    //checkBox->setFrame(false); // gilgil temp 2015.03.19
     QVariant value = object->property(mpro.name());
-    lineEdit->setText(value.toString());
-    return lineEdit;
+    checkBox->setChecked(value.toBool());
+    return checkBox;
   }
 
 protected:
   int userType;
 };
 
-#endif // __V_PROPERTY_WIDGET_ITEM_CREATOR_LINE_EDIT_H__
+#endif // __V_PROPERTY_WIDGET_ITEM_CREATOR_CHECK_BOX_H__

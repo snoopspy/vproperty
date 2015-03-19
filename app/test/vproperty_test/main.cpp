@@ -17,6 +17,7 @@ QObject* createObject()
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
+  qSetMessagePattern("%{file}(%{line}): %{message}");
   QObject* object = createObject();
   VPropertyEditor editor;
   editor.setObject(object);

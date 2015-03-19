@@ -1,4 +1,5 @@
 #include "vpropertywidgetfactory.h"
+#include "vpropertywidgetcreatorcheckbox.h"
 #include "vpropertywidgetcreatorlineedit.h"
 
 // ----------------------------------------------------------------------------
@@ -14,6 +15,9 @@ public:
 
     VPropertyWidgetCreatorLineEdit* stringCreator = new VPropertyWidgetCreatorLineEdit(QMetaType::QString);
     this->append(stringCreator);
+
+    VPropertyWidgetCreatorCheckBox* boolCreator = new VPropertyWidgetCreatorCheckBox(QMetaType::Bool);
+    this->append(boolCreator);
   }
   virtual ~VPropertyWidgetFactoryInstance()
   {
