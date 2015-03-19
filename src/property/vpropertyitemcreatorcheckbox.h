@@ -12,17 +12,17 @@
 #define __V_PROPERTY_WIDGET_ITEM_CREATOR_CHECK_BOX_H__
 
 #include <QCheckBox>
-#include "vpropertywidgetcreator.h"
+#include "vpropertyitemcreator.h"
 
 // ----------------------------------------------------------------------------
-// VPropertyWidgetCheckBox
+// VPropertyItemCheckBox
 // ----------------------------------------------------------------------------
-class VPropertyWidgetCheckBox : public QCheckBox
+class VPropertyItemCheckBox : public QCheckBox
 {
   Q_OBJECT
 
 public:
-  VPropertyWidgetCheckBox(QWidget* parent, QObject* object, QMetaProperty mpro) : QCheckBox(parent)
+  VPropertyItemCheckBox(QWidget* parent, QObject* object, QMetaProperty mpro) : QCheckBox(parent)
   {
     this->object = object;
     this->mpro = mpro;
@@ -42,18 +42,24 @@ protected:
 };
 
 // ----------------------------------------------------------------------------
-// VPropertyWidgetCreatorCheckBox
+// VPropertyItemCreatorCheckBox
 // ----------------------------------------------------------------------------
-class VPropertyWidgetCreatorCheckBox : public VPropertyWidgetCreator
+class VPropertyItemCreatorCheckBox : public VPropertyItemCreator
 {
 public:
-  VPropertyWidget* createWidget(VPropertyEditor* editor, QObject* object, QMetaProperty mpro) override
+  VPropertyItem* createItem(VPropertyEditor* editor, QObject* object, QMetaProperty mpro) override
   {
     if (mpro.userType() != QMetaType::Bool) return nullptr;
-    VPropertyWidgetCheckBox* checkBox = new VPropertyWidgetCheckBox(editor, object, mpro);
+
+    VPropertyItemCheckBox* checkBox = new VPropertyItemCheckBox(editor, object, mpro);
     QVariant value = object->property(mpro.name());
     checkBox->setChecked(value.toBool());
-    return checkBox;
+
+    VPropertyItem* item = new VPropertyItem(editor);
+    item->setText(0, mpro.name());
+    editor->setItemWidget(item, 1, checkBox);
+
+    return item;
   }
 };
 

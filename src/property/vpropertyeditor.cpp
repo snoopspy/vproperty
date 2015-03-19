@@ -2,7 +2,7 @@
 #include <QGridLayout>
 
 #include "vpropertyeditor.h"
-#include "vpropertywidgetfactory.h"
+#include "vpropertyitemfactory.h"
 
 // ----------------------------------------------------------------------------
 // VPropertyEditor
@@ -30,30 +30,26 @@ void VPropertyEditor::setObject(QObject* object)
 {
   if (object == _object) return;
   _object = object;
-  VPropertyWidgetFactory& factory = VPropertyWidgetFactory::instance();
+  VPropertyItemFactory& factory = VPropertyItemFactory::instance();
 
   const QMetaObject* mobj = object->metaObject();
   int propCount = mobj->propertyCount();
   for (int i = 0; i < propCount; i++)
   {
     QMetaProperty mpro = mobj->property(i);
-    VPropertyWidget* widget = nullptr;
-    VPropertyWidgetCreator* creatableObject = dynamic_cast<VPropertyWidgetCreator*>(object);
+    VPropertyItem* item = nullptr;
+    VPropertyItemCreator* creatableObject = dynamic_cast<VPropertyItemCreator*>(object);
     if (creatableObject != nullptr)
     {
-      widget = creatableObject->createWidget(this, object, mpro);
+      item = creatableObject->createItem(this, object, mpro);
     }
-    if (widget == nullptr)
+    if (item == nullptr)
     {
-      widget = factory.createWidget(this, object, mpro);
+      item = factory.createItem(this, object, mpro);
     }
-    if (widget == nullptr)
+    if (item == nullptr)
     {
       qDebug() << "item is nullptr" << mpro.typeName() << mpro.name();
     }
-    QTreeWidgetItem* widgetItem = new QTreeWidgetItem(this);
-    widgetItem->setText(0, mpro.name());
-    this->setItemWidget(widgetItem, 1, widget);
-    //widgetItem->setBackground(1, QBrush(QColor(128, 128, 128))); // gilgil temp 2015.01.14
   }
 }

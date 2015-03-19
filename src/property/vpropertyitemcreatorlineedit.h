@@ -13,17 +13,17 @@
 
 #include <QDebug>
 #include <QLineEdit>
-#include "vpropertywidgetcreator.h"
+#include "vpropertyitemcreator.h"
 
 // ----------------------------------------------------------------------------
-// VPropertyWidgetLineEdit
+// VPropertyItemLineEdit
 // ----------------------------------------------------------------------------
-class VPropertyWidgetLineEdit : public QLineEdit
+class VPropertyItemLineEdit : public QLineEdit
 {
   Q_OBJECT
 
 public:
-  VPropertyWidgetLineEdit(QWidget* parent, QObject* object, QMetaProperty mpro) : QLineEdit(parent)
+  VPropertyItemLineEdit(QWidget* parent, QObject* object, QMetaProperty mpro) : QLineEdit(parent)
   {
     this->object = object;
     this->mpro = mpro;
@@ -34,7 +34,7 @@ public slots:
   void myEditingFinished()
   {
     object->setProperty(mpro.name(), QVariant::fromValue<QString>(this->text()));
-    qDebug() << "VPropertyWidgetCreator_LineEdit::myEditingFinished" << mpro.name() <<  (void*)this; // gilgil temp 2015.03.17
+    qDebug() << "VPropertyItemCreator_LineEdit::myEditingFinished" << mpro.name() <<  (void*)this; // gilgil temp 2015.03.17
   }
 
 protected:
@@ -43,24 +43,29 @@ protected:
 };
 
 // ----------------------------------------------------------------------------
-// VPropertyWidgetCreatorLineEdit
+// VPropertyItemCreatorLineEdit
 // ----------------------------------------------------------------------------
-class VPropertyWidgetCreatorLineEdit : public VPropertyWidgetCreator
+class VPropertyItemCreatorLineEdit : public VPropertyItemCreator
 {
 public:
-  VPropertyWidgetCreatorLineEdit(int userType)
+  VPropertyItemCreatorLineEdit(int userType)
   {
     this->userType = userType;
   }
 
-  VPropertyWidget* createWidget(VPropertyEditor* editor, QObject* object, QMetaProperty mpro) override
+  VPropertyItem* createItem(VPropertyEditor* editor, QObject* object, QMetaProperty mpro) override
   {
     if (mpro.userType() != userType) return nullptr;
-    VPropertyWidgetLineEdit* lineEdit = new VPropertyWidgetLineEdit(editor, object, mpro);
+
+    VPropertyItemLineEdit* lineEdit = new VPropertyItemLineEdit(editor, object, mpro);
     lineEdit->setFrame(false);
     QVariant value = object->property(mpro.name());
     lineEdit->setText(value.toString());
-    return lineEdit;
+
+    VPropertyItem* item = new VPropertyItem(editor);
+    item->setText(0, mpro.name());
+    editor->setItemWidget(item, 1, lineEdit);
+    return item;
   }
 
 protected:

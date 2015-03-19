@@ -8,11 +8,11 @@
 //
 // ----------------------------------------------------------------------------
 
-#ifndef __V_PROPERTY_WIDGET_H__
-#define __V_PROPERTY_WIDGET_H__
+#ifndef __V_PROPERTY_ITEM_H__
+#define __V_PROPERTY_ITEM_H__
 
-#include <QWidget>
+#include <QTreeWidgetItem>
 
-typedef QWidget VPropertyWidget;
+typedef QTreeWidgetItem VPropertyItem;
 
-#endif // __V_PROPERTY_WIDGET_H__
+#endif // __V_PROPERTY_ITEM_H__

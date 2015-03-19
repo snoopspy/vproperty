@@ -13,15 +13,15 @@
 
 #include <QMetaProperty>
 #include "vpropertyeditor.h"
-#include "vpropertywidget.h"
+#include "vpropertyitem.h"
 
 // ----------------------------------------------------------------------------
-// VPropertyWidgetCreator
+// VPropertyItemCreator
 // ----------------------------------------------------------------------------
-class VPropertyWidgetCreator
+class VPropertyItemCreator
 {
 public:
-  virtual VPropertyWidget* createWidget(VPropertyEditor* editor, QObject* object, QMetaProperty mpro) = 0;
+  virtual VPropertyItem* createItem(VPropertyEditor* editor, QObject* object, QMetaProperty mpro) = 0;
 };
 
 #endif // __V_PROPERTY_WIDGET_ITEM_CREATOR_H__

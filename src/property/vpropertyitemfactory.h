@@ -12,16 +12,16 @@
 #define __V_PROPERTY_WIDGET_ITEM_CREATOR_MGR_H__
 
 #include <QList>
-#include "vpropertywidgetcreator.h"
+#include "vpropertyitemcreator.h"
 
 // ----------------------------------------------------------------------------
-// VPropertyWidgetFactory
+// VPropertyItemFactory
 // ----------------------------------------------------------------------------
-class VPropertyWidgetFactory : public QList<VPropertyWidgetCreator*>
+class VPropertyItemFactory : public QList<VPropertyItemCreator*>
 {
 public:
-  VPropertyWidget* createWidget(VPropertyEditor* editor, QObject* object, QMetaProperty mpro);
-  static VPropertyWidgetFactory& instance();
+  VPropertyItem* createItem(VPropertyEditor* editor, QObject* object, QMetaProperty mpro);
+  static VPropertyItemFactory& instance();
 };
 
 #endif // __V_PROPERTY_WIDGET_ITEM_CREATOR_MGR_H__
