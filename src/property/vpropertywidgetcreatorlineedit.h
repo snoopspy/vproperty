@@ -27,7 +27,6 @@ public:
   {
     this->object = object;
     this->mpro = mpro;
-
     connect(this, SIGNAL(editingFinished()), this, SLOT(myEditingFinished()));
   }
 

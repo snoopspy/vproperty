@@ -16,7 +16,7 @@ public:
     VPropertyWidgetCreatorLineEdit* stringCreator = new VPropertyWidgetCreatorLineEdit(QMetaType::QString);
     this->append(stringCreator);
 
-    VPropertyWidgetCreatorCheckBox* boolCreator = new VPropertyWidgetCreatorCheckBox(QMetaType::Bool);
+    VPropertyWidgetCreatorCheckBox* boolCreator = new VPropertyWidgetCreatorCheckBox;
     this->append(boolCreator);
   }
   virtual ~VPropertyWidgetFactoryInstance()

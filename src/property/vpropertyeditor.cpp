@@ -56,6 +56,4 @@ void VPropertyEditor::setObject(QObject* object)
     this->setItemWidget(widgetItem, 1, widget);
     //widgetItem->setBackground(1, QBrush(QColor(128, 128, 128))); // gilgil temp 2015.01.14
   }
-
-  // gilgil temp 2015.03.17
 }
