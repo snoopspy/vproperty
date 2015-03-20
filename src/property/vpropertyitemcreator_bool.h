@@ -15,14 +15,14 @@
 #include "vpropertyitemcreator.h"
 
 // ----------------------------------------------------------------------------
-// VPropertyItemCheckBox
+// VPropertyItemCreator_Bool_CheckBox
 // ----------------------------------------------------------------------------
-class VPropertyItemCheckBox : public QCheckBox
+class VPropertyItemCreator_Bool_CheckBox : public QCheckBox
 {
   Q_OBJECT
 
 public:
-  VPropertyItemCheckBox(QWidget* parent, QObject* object, QMetaProperty mpro) : QCheckBox(parent)
+  VPropertyItemCreator_Bool_CheckBox(QWidget* parent, QObject* object, QMetaProperty mpro) : QCheckBox(parent)
   {
     this->object = object;
     this->mpro = mpro;
@@ -42,16 +42,16 @@ protected:
 };
 
 // ----------------------------------------------------------------------------
-// VPropertyItemCreatorCheckBox
+// VPropertyItemCreator_Bool
 // ----------------------------------------------------------------------------
-class VPropertyItemCreatorCheckBox : public VPropertyItemCreator
+class VPropertyItemCreator_Bool : public VPropertyItemCreator
 {
 public:
   VPropertyItem* createItem(VPropertyEditor* editor, QObject* object, QMetaProperty mpro) override
   {
     if (mpro.userType() != QMetaType::Bool) return nullptr;
 
-    VPropertyItemCheckBox* checkBox = new VPropertyItemCheckBox(editor, object, mpro);
+    VPropertyItemCreator_Bool_CheckBox* checkBox = new VPropertyItemCreator_Bool_CheckBox(editor, object, mpro);
     QVariant value = object->property(mpro.name());
     checkBox->setChecked(value.toBool());
 

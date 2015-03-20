@@ -8,15 +8,15 @@ HEADERS += \
     $$PWD/../src/property/vpropertyeditor.h \
     $$PWD/../src/property/vpropertyitem.h \
     $$PWD/../src/property/vpropertyitemcreator.h \
-    $$PWD/../src/property/vpropertyitemcreatorcheckbox.h \
-    $$PWD/../src/property/vpropertyitemcreatorlineedit.h \
-    $$PWD/../src/property/vpropertyitemfactory.h
+    $$PWD/../src/property/vpropertyitemfactory.h \
+    $$PWD/../src/property/vpropertyitemcreator_base.h \
+    $$PWD/../src/property/vpropertyitemcreator_bool.h
 
 SOURCES += \
     $$PWD/../src/property/vproperty.cpp \
     $$PWD/../src/property/vpropertyeditor.cpp \
     $$PWD/../src/property/vpropertyitem.cpp \
     $$PWD/../src/property/vpropertyitemcreator.cpp \
-    $$PWD/../src/property/vpropertyitemcreatorcheckbox.cpp \
-    $$PWD/../src/property/vpropertyitemcreatorlineedit.cpp \
-    $$PWD/../src/property/vpropertyitemfactory.cpp
+    $$PWD/../src/property/vpropertyitemfactory.cpp \
+    $$PWD/../src/property/vpropertyitemcreator_base.cpp \
+    $$PWD/../src/property/vpropertyitemcreator_bool.cpp

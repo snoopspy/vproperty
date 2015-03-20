@@ -8,22 +8,22 @@
 //
 // ----------------------------------------------------------------------------
 
-#ifndef __V_PROPERTY_WIDGET_ITEM_CREATOR_LINE_EDIT_H__
-#define __V_PROPERTY_WIDGET_ITEM_CREATOR_LINE_EDIT_H__
+#ifndef __V_PROPERTY_WIDGET_ITEM_CREATOR_BASE_H__
+#define __V_PROPERTY_WIDGET_ITEM_CREATOR_BASE_H__
 
 #include <QDebug>
 #include <QLineEdit>
 #include "vpropertyitemcreator.h"
 
 // ----------------------------------------------------------------------------
-// VPropertyItemLineEdit
+// VPropertyItemCreator_Base_LineEdit
 // ----------------------------------------------------------------------------
-class VPropertyItemLineEdit : public QLineEdit
+class VPropertyItemCreator_Base_LineEdit : public QLineEdit
 {
   Q_OBJECT
 
 public:
-  VPropertyItemLineEdit(QWidget* parent, QObject* object, QMetaProperty mpro) : QLineEdit(parent)
+  VPropertyItemCreator_Base_LineEdit(QWidget* parent, QObject* object, QMetaProperty mpro) : QLineEdit(parent)
   {
     this->object = object;
     this->mpro = mpro;
@@ -43,12 +43,12 @@ protected:
 };
 
 // ----------------------------------------------------------------------------
-// VPropertyItemCreatorLineEdit
+// VPropertyItemCreator_Base
 // ----------------------------------------------------------------------------
-class VPropertyItemCreatorLineEdit : public VPropertyItemCreator
+class VPropertyItemCreator_Base : public VPropertyItemCreator
 {
 public:
-  VPropertyItemCreatorLineEdit(int userType)
+  VPropertyItemCreator_Base(int userType)
   {
     this->userType = userType;
   }
@@ -57,7 +57,7 @@ public:
   {
     if (mpro.userType() != userType) return nullptr;
 
-    VPropertyItemLineEdit* lineEdit = new VPropertyItemLineEdit(editor, object, mpro);
+    VPropertyItemCreator_Base_LineEdit* lineEdit = new VPropertyItemCreator_Base_LineEdit(editor, object, mpro);
     lineEdit->setFrame(false);
     QVariant value = object->property(mpro.name());
     lineEdit->setText(value.toString());
@@ -72,4 +72,4 @@ protected:
   int userType;
 };
 
-#endif // __V_PROPERTY_WIDGET_ITEM_CREATOR_LINE_EDIT_H__
+#endif // __V_PROPERTY_WIDGET_ITEM_CREATOR_BASE_H__

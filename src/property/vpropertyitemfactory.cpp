@@ -1,6 +1,6 @@
 #include "vpropertyitemfactory.h"
-#include "vpropertyitemcreatorcheckbox.h"
-#include "vpropertyitemcreatorlineedit.h"
+#include "vpropertyitemcreator_base.h"
+#include "vpropertyitemcreator_bool.h"
 
 // ----------------------------------------------------------------------------
 // VPropertyItemFactoryInstance
@@ -10,13 +10,16 @@ class VPropertyItemFactoryInstance : public VPropertyItemFactory
 public:
   VPropertyItemFactoryInstance()
   {
-    VPropertyItemCreatorLineEdit* intCreator = new VPropertyItemCreatorLineEdit(QMetaType::Int);
+    VPropertyItemCreator_Base* intCreator = new VPropertyItemCreator_Base(QMetaType::Int);
     this->append(intCreator);
 
-    VPropertyItemCreatorLineEdit* stringCreator = new VPropertyItemCreatorLineEdit(QMetaType::QString);
+    VPropertyItemCreator_Base* stringCreator = new VPropertyItemCreator_Base(QMetaType::QString);
     this->append(stringCreator);
 
-    VPropertyItemCreatorCheckBox* boolCreator = new VPropertyItemCreatorCheckBox;
+    VPropertyItemCreator_Base* doubleCreator = new VPropertyItemCreator_Base(QMetaType::Double);
+    this->append(doubleCreator);
+
+    VPropertyItemCreator_Bool* boolCreator = new VPropertyItemCreator_Bool;
     this->append(boolCreator);
   }
   virtual ~VPropertyItemFactoryInstance()
