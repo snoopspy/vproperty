@@ -1,4 +1,4 @@
 TEMPLATE = subdirs
 SUBDIRS += \
-	exam/simple
+	exam/simple \
 	test/vproperty_test

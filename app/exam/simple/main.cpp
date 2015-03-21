@@ -1,6 +1,6 @@
 #include <QApplication>
 #include <QDebug>
-#include <VPropertyWidget>
+#include <VPropertyEditor>
 
 #include <QFile>
 #include <QLabel>
@@ -10,34 +10,34 @@ int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
   qSetMessagePattern("%{type} %{threadid} (%{function} %{line}): %{message}");
-  VPropertyWidget widget;
-  //widget.setGeometry(0, 0, 300, 500);
+  VPropertyEditor editor;
+  //editor.setGeometry(0, 0, 300, 500);
 
   /*
   QFile file;
   file.setObjectName("temp");
-  widget.setObject(&file);
+  editor.setObject(&file);
   */
 
   /*
   QTcpServer tcpServer;
   tcpServer.setObjectName("myTcpServer");
-  widget.setObject(&tcpServer);
+  editor.setObject(&tcpServer);
   */
 
   /*
   QLabel label;
   label.setObjectName("myLabel");
-  widget.setObject(&label);
+  editor.setObject(&label);
   label.show();
   */
 
   VTcpClient tcpClient;
   tcpClient.setObjectName("myTcpClient");
-  widget.setObject(&tcpClient);
+  editor.setObject(&tcpClient);
   //tcpClient.show();
 
-  widget.show();
+  editor.show();
   int res = a.exec();
   return res;
 }
