@@ -8,37 +8,36 @@
 //
 // ----------------------------------------------------------------------------
 
-#ifndef __V_PROPERTY_WIDGET_ITEM_CREATOR_CHECK_BOX_H__
-#define __V_PROPERTY_WIDGET_ITEM_CREATOR_CHECK_BOX_H__
+#ifndef __V_PROPERTY_WIDGET_ITEM_CREATOR_BOOL_H__
+#define __V_PROPERTY_WIDGET_ITEM_CREATOR_BOOL_H__
 
 #include <QCheckBox>
 #include "vpropertyitemcreator.h"
 
 // ----------------------------------------------------------------------------
-// VPropertyItemCreator_Bool_CheckBox
+// VPropertyItem_Bool
 // ----------------------------------------------------------------------------
-class VPropertyItemCreator_Bool_CheckBox : public QCheckBox
+class VPropertyItem_Bool : public VPropertyItem
 {
   Q_OBJECT
 
 public:
-  VPropertyItemCreator_Bool_CheckBox(QWidget* parent, QObject* object, QMetaProperty mpro) : QCheckBox(parent)
+  VPropertyItem_Bool(QTreeWidget* view, QObject* object, QMetaProperty mpro) : VPropertyItem(view, object, mpro)
   {
-    this->object = object;
-    this->mpro = mpro;
-
-    connect(this, SIGNAL(clicked(bool)), this, SLOT(myClicked(bool)));
+    checkBox = new QCheckBox(view);
+    checkBox->setChecked(object->property(mpro.name()).toBool());
+    QObject::connect(checkBox, SIGNAL(clicked(bool)), this, SLOT(myClicked(bool)));
+    view->setItemWidget(this, 1, checkBox);
   }
 
-public slots:
+protected:
+  QCheckBox* checkBox;
+
+protected slots:
   void myClicked(bool checked)
   {
     object->setProperty(mpro.name(), checked);
   }
-
-protected:
-  QObject* object;
-  QMetaProperty mpro;
 };
 
 // ----------------------------------------------------------------------------
@@ -50,17 +49,8 @@ public:
   VPropertyItem* createItem(VPropertyEditor* editor, QObject* object, QMetaProperty mpro) override
   {
     if (mpro.userType() != QMetaType::Bool) return nullptr;
-
-    VPropertyItemCreator_Bool_CheckBox* checkBox = new VPropertyItemCreator_Bool_CheckBox(editor, object, mpro);
-    QVariant value = object->property(mpro.name());
-    checkBox->setChecked(value.toBool());
-
-    VPropertyItem* item = new VPropertyItem(editor);
-    item->setText(0, mpro.name());
-    editor->setItemWidget(item, 1, checkBox);
-
-    return item;
+    return new VPropertyItem_Bool(editor, object, mpro);
   }
 };
 
-#endif // __V_PROPERTY_WIDGET_ITEM_CREATOR_CHECK_BOX_H__
+#endif // __V_PROPERTY_WIDGET_ITEM_CREATOR_BOOL_H__

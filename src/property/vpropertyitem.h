@@ -11,8 +11,22 @@
 #ifndef __V_PROPERTY_ITEM_H__
 #define __V_PROPERTY_ITEM_H__
 
+#include <QMetaProperty>
 #include <QTreeWidgetItem>
 
-typedef QTreeWidgetItem VPropertyItem;
+class VPropertyItem : public QObject, public QTreeWidgetItem
+{
+public:
+  VPropertyItem(QTreeWidget *view, QObject* object, QMetaProperty mpro) : QTreeWidgetItem(view)
+  {
+    this->object = object;
+    this->mpro = mpro;
+    this->setText(0, mpro.name());
+  }
+
+protected:
+  QObject* object;
+  QMetaProperty mpro;
+};
 
 #endif // __V_PROPERTY_ITEM_H__
