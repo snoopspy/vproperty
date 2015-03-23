@@ -8,8 +8,8 @@
 //
 // ----------------------------------------------------------------------------
 
-#ifndef __V_PROPERTY_WIDGET_ITEM_CREATOR_BASE_H__
-#define __V_PROPERTY_WIDGET_ITEM_CREATOR_BASE_H__
+#ifndef __V_PROPERTY_WIDGET_ITEM_BASE_H__
+#define __V_PROPERTY_WIDGET_ITEM_BASE_H__
 
 #include <QLineEdit>
 #include "vpropertyitemcreator.h"
@@ -62,4 +62,4 @@ protected:
   int userType;
 };
 
-#endif // __V_PROPERTY_WIDGET_ITEM_CREATOR_BASE_H__
+#endif // __V_PROPERTY_WIDGET_ITEM_BASE_H__

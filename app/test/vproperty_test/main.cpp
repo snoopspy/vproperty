@@ -2,13 +2,14 @@
 #include <VPropertyEditor>
 
 #include <QLineEdit>
+#include "myobj.h"
 #include "netclient.h"
 
 QObject* createObject()
 {
   //QObject* res = new NetClient;
-
-  QObject* res = new QLineEdit;
+  //QObject* res = new QLineEdit;
+  QObject* res = new MyObj; //((MyObj*)res)->ch = 'B';
 
   res->setObjectName("myName");
   return res;

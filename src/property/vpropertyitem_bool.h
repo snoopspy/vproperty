@@ -8,8 +8,8 @@
 //
 // ----------------------------------------------------------------------------
 
-#ifndef __V_PROPERTY_WIDGET_ITEM_CREATOR_BOOL_H__
-#define __V_PROPERTY_WIDGET_ITEM_CREATOR_BOOL_H__
+#ifndef __V_PROPERTY_WIDGET_ITEM_BOOL_H__
+#define __V_PROPERTY_WIDGET_ITEM_BOOL_H__
 
 #include <QCheckBox>
 #include "vpropertyitemcreator.h"
@@ -53,4 +53,4 @@ public:
   }
 };
 
-#endif // __V_PROPERTY_WIDGET_ITEM_CREATOR_BOOL_H__
+#endif // __V_PROPERTY_WIDGET_ITEM_BOOL_H__

@@ -9,8 +9,9 @@ HEADERS += \
     $$PWD/../src/property/vpropertyitem.h \
     $$PWD/../src/property/vpropertyitemcreator.h \
     $$PWD/../src/property/vpropertyitemfactory.h \
-    $$PWD/../src/property/vpropertyitemcreator_base.h \
-    $$PWD/../src/property/vpropertyitemcreator_bool.h
+    $$PWD/../src/property/vpropertyitem_base.h \
+    $$PWD/../src/property/vpropertyitem_bool.h \
+    $$PWD/../src/property/vpropertyitem_unknowntype.h
 
 SOURCES += \
     $$PWD/../src/property/vproperty.cpp \
@@ -18,5 +19,6 @@ SOURCES += \
     $$PWD/../src/property/vpropertyitem.cpp \
     $$PWD/../src/property/vpropertyitemcreator.cpp \
     $$PWD/../src/property/vpropertyitemfactory.cpp \
-    $$PWD/../src/property/vpropertyitemcreator_base.cpp \
-    $$PWD/../src/property/vpropertyitemcreator_bool.cpp
+    $$PWD/../src/property/vpropertyitem_base.cpp \
+    $$PWD/../src/property/vpropertyitem_bool.cpp \
+    $$PWD/../src/property/vpropertyitem_unknowntype.cpp

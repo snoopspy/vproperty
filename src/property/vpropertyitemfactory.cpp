@@ -1,6 +1,7 @@
 #include "vpropertyitemfactory.h"
-#include "vpropertyitemcreator_base.h"
-#include "vpropertyitemcreator_bool.h"
+#include "vpropertyitem_base.h"
+#include "vpropertyitem_bool.h"
+#include "vpropertyitem_unknowntype.h"
 
 // ----------------------------------------------------------------------------
 // VPropertyItemFactoryInstance
@@ -10,27 +11,26 @@ class VPropertyItemFactoryInstance : public VPropertyItemFactory
 public:
   VPropertyItemFactoryInstance()
   {
-    VPropertyItemCreator_Base* intCreator = new VPropertyItemCreator_Base(QMetaType::Int);
-    this->append(intCreator);
+    append(new VPropertyItemCreator_Bool);
+    append(new VPropertyItemCreator_Base(QMetaType::Int));
+    append(new VPropertyItemCreator_Base(QMetaType::UInt));
+    append(new VPropertyItemCreator_Base(QMetaType::LongLong));
+    append(new VPropertyItemCreator_Base(QMetaType::ULongLong));
+    append(new VPropertyItemCreator_Base(QMetaType::Double));
+    append(new VPropertyItemCreator_Base(QMetaType::QChar));
 
-    VPropertyItemCreator_Base* stringCreator = new VPropertyItemCreator_Base(QMetaType::QString);
-    this->append(stringCreator);
+    append(new VPropertyItemCreator_Base(QMetaType::QString));
 
-    VPropertyItemCreator_Base* doubleCreator = new VPropertyItemCreator_Base(QMetaType::Double);
-    this->append(doubleCreator);
-
-    VPropertyItemCreator_Bool* boolCreator = new VPropertyItemCreator_Bool;
-    this->append(boolCreator);
   }
 
   /*
-        Invalid = QMetaType::UnknownType,
-        Bool = QMetaType::Bool,
-        Int = QMetaType::Int,
-        UInt = QMetaType::UInt,
-        LongLong = QMetaType::LongLong,
-        ULongLong = QMetaType::ULongLong,
-        Double = QMetaType::Double,
+        * Invalid = QMetaType::UnknownType,
+        * Bool = QMetaType::Bool,
+        * Int = QMetaType::Int,
+        * UInt = QMetaType::UInt,
+        * LongLong = QMetaType::LongLong,
+        * ULongLong = QMetaType::ULongLong,
+        * Double = QMetaType::Double,
         Char = QMetaType::QChar,
         Map = QMetaType::QVariantMap,
         List = QMetaType::QVariantList,

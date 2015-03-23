@@ -2,6 +2,7 @@
 #include <QGridLayout>
 
 #include "vpropertyeditor.h"
+#include "vpropertyitem_unknowntype.h"
 #include "vpropertyitemfactory.h"
 
 // ----------------------------------------------------------------------------
@@ -50,6 +51,7 @@ void VPropertyEditor::setObject(QObject* object)
     if (item == nullptr)
     {
       qDebug() << "item is nullptr" << mpro.typeName() << mpro.name();
+      new VPropertyItem_UnknownType(this, object, mpro);
     }
   }
 }

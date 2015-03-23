@@ -11,8 +11,8 @@ class NetClient : public QObject
   Q_PROPERTY(QString ip MEMBER ip)
 
 public:
-  NetClient(QObject* parent = 0);
-  virtual ~NetClient();
+  NetClient(QObject* parent = 0) : QObject(parent) {}
+  virtual ~NetClient() {}
 
 public:
   QString host;

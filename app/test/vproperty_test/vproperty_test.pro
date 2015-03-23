@@ -11,8 +11,10 @@ DESTDIR = $$PWD/../../../bin
 
 SOURCES += main.cpp \
     ip.cpp \
-    netclient.cpp
+    netclient.cpp \
+    myobj.cpp
 
 HEADERS += \
     ip.h \
-    netclient.h
+    netclient.h \
+    myobj.h

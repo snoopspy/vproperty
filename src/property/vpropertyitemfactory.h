@@ -8,8 +8,8 @@
 //
 // ----------------------------------------------------------------------------
 
-#ifndef __V_PROPERTY_WIDGET_ITEM_CREATOR_MGR_H__
-#define __V_PROPERTY_WIDGET_ITEM_CREATOR_MGR_H__
+#ifndef __V_PROPERTY_WIDGET_ITEM_FACTORY_H__
+#define __V_PROPERTY_WIDGET_ITEM_FACTORY_H__
 
 #include <QList>
 #include "vpropertyitemcreator.h"
@@ -24,4 +24,4 @@ public:
   static VPropertyItemFactory& instance();
 };
 
-#endif // __V_PROPERTY_WIDGET_ITEM_CREATOR_MGR_H__
+#endif // __V_PROPERTY_WIDGET_ITEM_FACTORY_H__
