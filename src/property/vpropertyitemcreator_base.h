@@ -22,13 +22,13 @@ class VPropertyItem_Base : public VPropertyItem
   Q_OBJECT
 
 public:
-  VPropertyItem_Base(QTreeWidget* view, QObject* object, QMetaProperty mpro) : VPropertyItem(view, object, mpro)
+  VPropertyItem_Base(VPropertyEditor* editor, QObject* object, QMetaProperty mpro) : VPropertyItem(editor, object, mpro)
   {
-    lineEdit = new QLineEdit(view);
+    lineEdit = new QLineEdit(editor);
     lineEdit->setFrame(false);
     lineEdit->setText(object->property(mpro.name()).toString());
     QObject::connect(lineEdit, SIGNAL(editingFinished()), this, SLOT(myEditingFinished()));
-    view->setItemWidget(this, 1, lineEdit);
+    editor->setItemWidget(this, 1, lineEdit);
   }
 
 protected:

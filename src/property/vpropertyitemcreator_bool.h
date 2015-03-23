@@ -22,12 +22,12 @@ class VPropertyItem_Bool : public VPropertyItem
   Q_OBJECT
 
 public:
-  VPropertyItem_Bool(QTreeWidget* view, QObject* object, QMetaProperty mpro) : VPropertyItem(view, object, mpro)
+  VPropertyItem_Bool(VPropertyEditor* editor, QObject* object, QMetaProperty mpro) : VPropertyItem(editor, object, mpro)
   {
-    checkBox = new QCheckBox(view);
+    checkBox = new QCheckBox(editor);
     checkBox->setChecked(object->property(mpro.name()).toBool());
     QObject::connect(checkBox, SIGNAL(clicked(bool)), this, SLOT(myClicked(bool)));
-    view->setItemWidget(this, 1, checkBox);
+    editor->setItemWidget(this, 1, checkBox);
   }
 
 protected:
