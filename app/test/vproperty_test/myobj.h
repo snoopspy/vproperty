@@ -6,17 +6,20 @@
 class MyObj : public QObject
 {
   Q_OBJECT
-  Q_PROPERTY(QChar ch MEMBER ch)
+  Q_PROPERTY(QChar my_ch MEMBER my_ch)
+  Q_PROPERTY(int my_quint8 MEMBER my_quint8)
 public:
   explicit MyObj(QObject *parent = 0) : QObject(parent)
   {
-    ch = 'a';
+    my_ch = 'a';
+    my_quint8 = 8;
   }
 
   virtual ~MyObj() {}
 
 public:
-  QChar ch;
+  QChar my_ch;
+  quint8 my_quint8;
 };
 
 #endif // MYOBJ_H

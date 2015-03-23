@@ -11,6 +11,7 @@
 #ifndef __V_PROPERTY_WIDGET_ITEM_BASE_H__
 #define __V_PROPERTY_WIDGET_ITEM_BASE_H__
 
+#include <QDebug> // gilgil temp 2015.03.24
 #include <QLineEdit>
 #include "vpropertyitemcreator.h"
 
@@ -37,7 +38,11 @@ protected:
 protected slots:
   void myEditingFinished()
   {
-    object->setProperty(mpro.name(), QVariant::fromValue<QString>(lineEdit->text()));
+    bool res = object->setProperty(mpro.name(), QVariant::fromValue<QString>(lineEdit->text()));
+    if (!res)
+    {
+      qDebug() << QString("object->setProperty(%1, %2) return false").arg(mpro.name()).arg(lineEdit->text());
+    }
   }
 };
 
