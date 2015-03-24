@@ -26,6 +26,10 @@ public:
   {
     this->setBackground(1, QBrush(Qt::lightGray));
   }
+
+  void update() override
+  {
+  }
 };
 
 // ----------------------------------------------------------------------------

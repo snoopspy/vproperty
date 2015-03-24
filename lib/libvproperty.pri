@@ -11,7 +11,8 @@ HEADERS += \
     $$PWD/../src/property/vpropertyitemfactory.h \
     $$PWD/../src/property/vpropertyitem_base.h \
     $$PWD/../src/property/vpropertyitem_bool.h \
-    $$PWD/../src/property/vpropertyitem_unknowntype.h
+    $$PWD/../src/property/vpropertyitem_unknowntype.h \
+    $$PWD/../src/property/vpropertyitem_qchar.h
 
 SOURCES += \
     $$PWD/../src/property/vproperty.cpp \
@@ -21,4 +22,5 @@ SOURCES += \
     $$PWD/../src/property/vpropertyitemfactory.cpp \
     $$PWD/../src/property/vpropertyitem_base.cpp \
     $$PWD/../src/property/vpropertyitem_bool.cpp \
-    $$PWD/../src/property/vpropertyitem_unknowntype.cpp
+    $$PWD/../src/property/vpropertyitem_unknowntype.cpp \
+    $$PWD/../src/property/vpropertyitem_qchar.cpp

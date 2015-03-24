@@ -52,6 +52,9 @@ void VPropertyEditor::setObject(QObject* object)
     {
       qDebug() << "item is nullptr" << mpro.typeName() << mpro.name();
       new VPropertyItem_UnknownType(this, object, mpro);
+    } else
+    {
+      item->update();
     }
   }
 }

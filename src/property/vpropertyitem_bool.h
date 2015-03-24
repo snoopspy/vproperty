@@ -25,9 +25,13 @@ public:
   VPropertyItem_Bool(VPropertyEditor* editor, QObject* object, QMetaProperty mpro) : VPropertyItem(editor, object, mpro)
   {
     checkBox = new QCheckBox(editor);
-    checkBox->setChecked(object->property(mpro.name()).toBool());
     QObject::connect(checkBox, SIGNAL(clicked(bool)), this, SLOT(myClicked(bool)));
     editor->setItemWidget(this, 1, checkBox);
+  }
+
+  void update() override
+  {
+    checkBox->setChecked(object->property(mpro.name()).toBool());
   }
 
 protected:
@@ -37,6 +41,7 @@ protected slots:
   void myClicked(bool checked)
   {
     object->setProperty(mpro.name(), checked);
+    update();
   }
 };
 

@@ -1,6 +1,7 @@
 #include "vpropertyitemfactory.h"
 #include "vpropertyitem_base.h"
 #include "vpropertyitem_bool.h"
+#include "vpropertyitem_qchar.h"
 #include "vpropertyitem_unknowntype.h"
 
 // ----------------------------------------------------------------------------
@@ -17,7 +18,7 @@ public:
     append(new VPropertyItemCreator_Base(QMetaType::LongLong));
     append(new VPropertyItemCreator_Base(QMetaType::ULongLong));
     append(new VPropertyItemCreator_Base(QMetaType::Double));
-    append(new VPropertyItemCreator_Base(QMetaType::QChar));
+    append(new VPropertyItemCreator_QChar);
 
     append(new VPropertyItemCreator_Base(QMetaType::QString));
 

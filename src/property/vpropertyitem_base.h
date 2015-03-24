@@ -27,22 +27,27 @@ public:
   {
     lineEdit = new QLineEdit(editor);
     lineEdit->setFrame(false);
-    lineEdit->setText(object->property(mpro.name()).toString());
     QObject::connect(lineEdit, SIGNAL(editingFinished()), this, SLOT(myEditingFinished()));
     editor->setItemWidget(this, 1, lineEdit);
+  }
+
+  void update() override
+  {
+    lineEdit->setText(object->property(mpro.name()).toString());
   }
 
 protected:
   QLineEdit* lineEdit;
 
 protected slots:
-  void myEditingFinished()
+  virtual void myEditingFinished()
   {
     bool res = object->setProperty(mpro.name(), QVariant::fromValue<QString>(lineEdit->text()));
     if (!res)
     {
       qDebug() << QString("object->setProperty(%1, %2) return false").arg(mpro.name()).arg(lineEdit->text());
     }
+    update();
   }
 };
 

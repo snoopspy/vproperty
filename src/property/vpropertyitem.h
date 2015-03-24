@@ -16,6 +16,7 @@
 
 class VPropertyItem : public QObject, public QTreeWidgetItem
 {
+  Q_OBJECT
 public:
   VPropertyItem(QTreeWidget *view, QObject* object, QMetaProperty mpro) : QTreeWidgetItem(view)
   {
@@ -23,6 +24,8 @@ public:
     this->mpro = mpro;
     this->setText(0, mpro.name());
   }
+
+  virtual void update() = 0;
 
 protected:
   QObject* object;
