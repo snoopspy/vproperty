@@ -20,7 +20,7 @@ class VPropertyItem_QChar : public VPropertyItem_Base
 {
   Q_OBJECT
 public:
-  VPropertyItem_QChar(VPropertyEditor* editor, QObject* object, QMetaProperty mpro) : VPropertyItem_Base(editor, object, mpro)
+  VPropertyItem_QChar(VPropertyItemParam param) : VPropertyItem_Base(param)
   {
   }
 
@@ -42,10 +42,10 @@ protected slots:
 class VPropertyItemCreator_QChar : public VPropertyItemCreator
 {
 public:
-  VPropertyItem* createItem(VPropertyEditor* editor, QObject* object, QMetaProperty mpro) override
+  VPropertyItem* createItem(VPropertyItemParam param) override
   {
-    if (mpro.userType() != QMetaType::QChar) return nullptr;
-    return new VPropertyItem_QChar(editor, object, mpro);
+    if (param.mpro.userType() != QMetaType::QChar) return nullptr;
+    return new VPropertyItem_QChar(param);
   }
 };
 

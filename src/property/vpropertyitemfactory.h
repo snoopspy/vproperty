@@ -20,7 +20,7 @@
 class VPropertyItemFactory : public QList<VPropertyItemCreator*>
 {
 public:
-  VPropertyItem* createItem(VPropertyEditor* editor, QObject* object, QMetaProperty mpro);
+  VPropertyItem* createItem(VPropertyItemParam param);
   static VPropertyItemFactory& instance();
 };
 

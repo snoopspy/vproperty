@@ -22,7 +22,7 @@ class VPropertyItem_UnknownType : public VPropertyItem
   Q_OBJECT
 
 public:
-  VPropertyItem_UnknownType(VPropertyEditor* editor, QObject* object, QMetaProperty mpro) : VPropertyItem(editor, object, mpro)
+  VPropertyItem_UnknownType(VPropertyItemParam param) : VPropertyItem(param)
   {
     this->setBackground(1, QBrush(Qt::lightGray));
   }
@@ -38,9 +38,9 @@ public:
 class VPropertyItemCreator_UnknownType : public VPropertyItemCreator
 {
 public:
-  VPropertyItem* createItem(VPropertyEditor* editor, QObject* object, QMetaProperty mpro) override
+  VPropertyItem* createItem(VPropertyItemParam param) override
   {
-    return new VPropertyItem_UnknownType(editor, object, mpro);
+    return new VPropertyItem_UnknownType(param);
   }
 };
 

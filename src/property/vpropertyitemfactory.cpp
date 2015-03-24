@@ -32,7 +32,7 @@ public:
         * LongLong = QMetaType::LongLong,
         * ULongLong = QMetaType::ULongLong,
         * Double = QMetaType::Double,
-        Char = QMetaType::QChar,
+        * Char = QMetaType::QChar,
         Map = QMetaType::QVariantMap,
         List = QMetaType::QVariantList,
         String = QMetaType::QString,
@@ -98,13 +98,13 @@ public:
 // ----------------------------------------------------------------------------
 // VPropertyItemFactory
 // ----------------------------------------------------------------------------
-VPropertyItem* VPropertyItemFactory::createItem(VPropertyEditor* editor, QObject* object, QMetaProperty mpro)
+VPropertyItem* VPropertyItemFactory::createItem(VPropertyItemParam param)
 {
   VPropertyItem* item = nullptr;
   for (QList<VPropertyItemCreator*>::iterator it = begin(); it != end(); it++)
   {
     VPropertyItemCreator* creator = *it;
-    item = creator->createItem(editor, object, mpro);
+    item = creator->createItem(param);
     if (item != nullptr) break;
   }
   return item;

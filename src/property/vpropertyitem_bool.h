@@ -22,11 +22,11 @@ class VPropertyItem_Bool : public VPropertyItem
   Q_OBJECT
 
 public:
-  VPropertyItem_Bool(VPropertyEditor* editor, QObject* object, QMetaProperty mpro) : VPropertyItem(editor, object, mpro)
+  VPropertyItem_Bool(VPropertyItemParam param) : VPropertyItem(param)
   {
-    checkBox = new QCheckBox(editor);
+    checkBox = new QCheckBox(param.treeWidget);
     QObject::connect(checkBox, SIGNAL(clicked(bool)), this, SLOT(myClicked(bool)));
-    editor->setItemWidget(this, 1, checkBox);
+    param.treeWidget->setItemWidget(this, 1, checkBox);
   }
 
   void update() override
@@ -51,10 +51,10 @@ protected slots:
 class VPropertyItemCreator_Bool : public VPropertyItemCreator
 {
 public:
-  VPropertyItem* createItem(VPropertyEditor* editor, QObject* object, QMetaProperty mpro) override
+  VPropertyItem* createItem(VPropertyItemParam param) override
   {
-    if (mpro.userType() != QMetaType::Bool) return nullptr;
-    return new VPropertyItem_Bool(editor, object, mpro);
+    if (param.mpro.userType() != QMetaType::Bool) return nullptr;
+    return new VPropertyItem_Bool(param);
   }
 };
 

@@ -14,15 +14,22 @@
 #include <QMetaProperty>
 #include <QTreeWidgetItem>
 
+struct VPropertyItemParam
+{
+  QTreeWidget* treeWidget;
+  QObject* object;
+  QMetaProperty mpro;
+};
+
 class VPropertyItem : public QObject, public QTreeWidgetItem
 {
   Q_OBJECT
 public:
-  VPropertyItem(QTreeWidget *view, QObject* object, QMetaProperty mpro) : QTreeWidgetItem(view)
+  VPropertyItem(VPropertyItemParam param) : QTreeWidgetItem(param.treeWidget)
   {
-    this->object = object;
-    this->mpro = mpro;
-    this->setText(0, mpro.name());
+    object = param.object;
+    mpro = param.mpro;
+    setText(0, mpro.name());
   }
 
   virtual void update() = 0;

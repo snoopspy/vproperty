@@ -23,12 +23,12 @@ class VPropertyItem_Base : public VPropertyItem
   Q_OBJECT
 
 public:
-  VPropertyItem_Base(VPropertyEditor* editor, QObject* object, QMetaProperty mpro) : VPropertyItem(editor, object, mpro)
+  VPropertyItem_Base(VPropertyItemParam param) : VPropertyItem(param)
   {
-    lineEdit = new QLineEdit(editor);
+    lineEdit = new QLineEdit(param.treeWidget);
     lineEdit->setFrame(false);
     QObject::connect(lineEdit, SIGNAL(editingFinished()), this, SLOT(myEditingFinished()));
-    editor->setItemWidget(this, 1, lineEdit);
+    param.treeWidget->setItemWidget(this, 1, lineEdit);
   }
 
   void update() override
@@ -62,10 +62,10 @@ public:
     this->userType = userType;
   }
 
-  VPropertyItem* createItem(VPropertyEditor* editor, QObject* object, QMetaProperty mpro) override
+  VPropertyItem* createItem(VPropertyItemParam param) override
   {
-    if (mpro.userType() != userType) return nullptr;
-    return new VPropertyItem_Base(editor, object, mpro);
+    if (param.mpro.userType() != userType) return nullptr;
+    return new VPropertyItem_Base(param);
   }
 
 protected:

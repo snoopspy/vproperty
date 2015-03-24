@@ -40,18 +40,19 @@ void VPropertyEditor::setObject(QObject* object)
     QMetaProperty mpro = mobj->property(i);
     VPropertyItem* item = nullptr;
     VPropertyItemCreator* creatableObject = dynamic_cast<VPropertyItemCreator*>(object);
+    VPropertyItemParam param {this, object, mpro};
     if (creatableObject != nullptr)
     {
-      item = creatableObject->createItem(this, object, mpro);
+      item = creatableObject->createItem(param);
     }
     if (item == nullptr)
     {
-      item = factory.createItem(this, object, mpro);
+      item = factory.createItem(param);
     }
     if (item == nullptr)
     {
       qDebug() << "item is nullptr" << mpro.typeName() << mpro.name();
-      new VPropertyItem_UnknownType(this, object, mpro);
+      new VPropertyItem_UnknownType(param);
     } else
     {
       item->update();
