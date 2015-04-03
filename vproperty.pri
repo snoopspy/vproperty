@@ -17,9 +17,9 @@ CONFIG(debug, debug|release) VPROPERTY_NAME = $${VPROPERTY_NAME}_d
 #------------------------------------------------------------------------------
 # vproperty
 #------------------------------------------------------------------------------
-VPROPERTY_PATH = $$PWD
-INCLUDEPATH += $$VPROPERTY_PATH/src
+VPROPERTY_DIR = $$PWD
+INCLUDEPATH += $$VPROPERTY_DIR/src
 !CONFIG(VPROPERTY_BUILD) {
-	PRE_TARGETDEPS +=  $$VPROPERTY_PATH/lib/lib$${VPROPERTY_NAME}.a
-	LIBS           += -L$$VPROPERTY_PATH/lib -l$$VPROPERTY_NAME
+	PRE_TARGETDEPS +=  $$VPROPERTY_DIR/lib/lib$${VPROPERTY_NAME}.a
+	LIBS           += -L$$VPROPERTY_DIR/lib -l$$VPROPERTY_NAME
 }
